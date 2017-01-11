@@ -18,6 +18,7 @@ python jenny.py
 * Web interface for live output
 * Improved attempt reporting
 * Remove false positives
+* Allow custom options
 
 ## Authors
 
