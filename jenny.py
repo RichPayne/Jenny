@@ -17,15 +17,21 @@ def tel_con():
     while 1:
         try:
             conn, addr = s.accept()
-            printInfo(addr[0])
+            conn.sendall("Username: ")
+            usr = conn.recv(4096)
+            conn.sendall("Password:")
+            pw = conn.recv(4096)
+            printInfo(addr[0], usr, pw)
         except KeyboardInterrupt:
             s.close()
             sys.exit()
     
 #Compiles and prints
-def printInfo(remote_ip):
+def printInfo(remote_ip, username, password):
      ip = remote_ip
-     info = (time.strftime("%d/%m/%Y") + " [" + time.strftime("%H:%M:%S") + "]" + " - " + str(ip) + " using USERNAME|PASSWORD")
+     usr = username
+     pw = password
+     info = (time.strftime("%d/%m/%Y") + " [" + time.strftime("%H:%M:%S") + "]" + " - " + str(ip) + " using " + str(usr) + "|" + str(pw))
      print info
      oFile(info)   
 
@@ -35,3 +41,5 @@ def oFile(pInfo):
     fileObject = open("logs.txt", "a")
     fileObject.write(oInfo + "\n")
     fileObject.close()
+
+tel_con()
