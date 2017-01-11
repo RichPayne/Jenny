@@ -12,13 +12,17 @@ A Python based Mirai honeypot built for easy setup & use.
 python jenny.py
 ```
 
-## Future Features
+## Future features
 
 * Dedicated password & username logs 
 * Web interface for live output
 * Improved attempt reporting
 * Remove false positives
 * Allow custom options
+
+## Known issues
+
+* socket.error: [Errno 104] Connection reset by peer
 
 ## Authors
 
