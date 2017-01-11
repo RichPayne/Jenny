@@ -1,6 +1,6 @@
 # Jenny
 
-A Python based Mirai honeypot
+A Python based Mirai honeypot built for easy setup & use.
 
 ## Requirements
 
