@@ -4,7 +4,7 @@ A Python based Mirai honeypot
 
 ## Requirements
 
-Python 2.7
+* Python 2.7
 
 ## Usage
 
