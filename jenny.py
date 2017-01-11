@@ -13,7 +13,7 @@ s.listen(10)
 print "[+]-------Jenny BETA-------[+]"
 
 #Sets up telnet sockets
-def tel_con():
+def telCon():
     while 1:
         try:
             conn, addr = s.accept()
@@ -42,4 +42,5 @@ def oFile(pInfo):
     fileObject.write(oInfo + "\n")
     fileObject.close()
 
-tel_con()
+telCon()
+
