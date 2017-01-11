@@ -6,13 +6,20 @@ A Python based Mirai honeypot
 
 Python 2.7
 
-### Usage
+## Usage
 
 ```
 python jenny.py
 ```
 
-### Authors
+## Future Features
+
+* Dedicated password & username logs 
+* Web interface for live output
+* Improved attempt reporting
+* Remove false positives
+
+## Authors
 
 Richard Payne, 2nd year Cyber security student.
 
