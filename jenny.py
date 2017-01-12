@@ -16,17 +16,14 @@ print "[+]-------Jenny BETA-------[+]"
 def telCon():
     while 1:
         try:
-            conn, addr = s.accept()
-            conn.sendall("Username: ")
             try:
-                usr = conn.recv(4096)
+                conn, addr = s.accept()
+                conn.sendall("Username: ")
+                usr = conn.recv(65000)
+                conn.sendall("Password:")
+                pw = conn.recv(65000)
             except socket.error, ex:
-                pass
-            conn.sendall("Password:")
-            try:
-                pw = conn.recv(4096)
-            except socket.error, ex:
-                pass
+                continue
             printInfo(addr[0], usr, pw)
             pwLog(pw)
             usernameLog(usr)
