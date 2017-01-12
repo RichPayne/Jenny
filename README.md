@@ -24,6 +24,11 @@ python jenny.py
 
 * socket.error: [Errno 104] Connection reset by peer
 
+* socket.error: [Errno 98] Address already in use
+```
+Solution: sudo fuser -k 23/tcp
+```
+
 ## Authors
 
 Richard Payne, 2nd year Cyber security student.
