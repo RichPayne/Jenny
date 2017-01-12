@@ -14,11 +14,11 @@ python jenny.py
 
 ## Future features
 
-* Dedicated password & username logs 
 * Web interface for live output
 * Improved attempt reporting
 * Remove false positives
 * Allow custom options
+* Remove brackets and quotes from user/pass info
 
 ## Known issues
 
