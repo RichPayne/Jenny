@@ -15,14 +15,9 @@ python jenny.py
 ## Future features
 
 * Web interface for live output
-* Improved attempt reporting
-* Remove false positives
-* Allow custom options
-* Remove brackets and quotes from user/pass info
+* Mitigate false-positives
 
 ## Known issues
-
-* socket.error: [Errno 104] Connection reset by peer
 
 * socket.error: [Errno 98] Address already in use
 ```
