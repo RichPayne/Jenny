@@ -23,6 +23,7 @@ python jenny.py
 ```
 Solution: sudo fuser -k 23/tcp
 ```
+* Server hangs unexpectedly
 
 ## Authors
 
