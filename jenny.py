@@ -18,9 +18,15 @@ def telCon():
         try:
             conn, addr = s.accept()
             conn.sendall("Username: ")
-            usr = conn.recv(4096)
+            try:
+                usr = conn.recv(4096)
+            except socket.error, ex:
+                pass
             conn.sendall("Password:")
-            pw = conn.recv(4096)
+            try:
+                pw = conn.recv(4096)
+            except socket.error, ex:
+                pass
             printInfo(addr[0], usr, pw)
             pwLog(pw)
             usernameLog(usr)
@@ -35,16 +41,14 @@ def printInfo(remote_ip, username, password):
      usr = username
      if str(usr) == "" and str(pw) == "":
          info = (time.strftime("%d/%m/%Y") + " [" + time.strftime("%H:%M:%S") + "]" + " - " + str(ip) + " using no password or username")
-     elif str(usr) == "":
-         usr = username.rsplit()
-         info = (time.strftime("%d/%m/%Y") + " [" + time.strftime("%H:%M:%S") + "]" + " - " + str(ip) + " using N/A|" + str(usr))
-     elif str(pw) == "":
-         pw = password.rsplit()
-         info = (time.strftime("%d/%m/%Y") + " [" + time.strftime("%H:%M:%S") + "]" + " - " + str(ip) + " using " + str(pw) + "|N/A")
      else:
          usr = username.rsplit()
          pw = password.rsplit()
-         info = (time.strftime("%d/%m/%Y") + " [" + time.strftime("%H:%M:%S") + "]" + " - " + str(ip) + " using " + str(usr) + "|" + str(pw))
+         try:
+             info = (time.strftime("%d/%m/%Y") + " [" + time.strftime("%H:%M:%S") + "]" + " - " + str(ip) + " using " + str(usr[0]) + "|" + str(pw[0]))
+         except IndexError, ex:
+             info = ""
+             pass
      print info
      oFile(info)   
 
@@ -53,13 +57,6 @@ def oFile(pInfo):
     oInfo = pInfo
     fileObject = open("logs.txt", "a")
     fileObject.write(oInfo + "\n")
-    fileObject.close()
-
-#produces error log file
-def errorLogs(errorMessage):
-    error = errorMessage
-    fileOnject = open("errorLogs.txt", "a")
-    fileObject.write(error + "\n")
     fileObject.close()
 
 #produces dedicated passwor log
