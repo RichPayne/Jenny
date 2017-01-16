@@ -4,70 +4,57 @@ import socket
 import time
 import getpass
 import signal
+import xml.etree.ElementTree as ET
 
+#Create socket and bind
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 s.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
 s.bind(('',23))
 s.listen(10)
 
+
 print "[+]-------Jenny BETA-------[+]"
 
-#Sets up telnet sockets
-def telCon():
+#Listens & accepts telnet connections
+def recvConnection():
     while 1:
         try:
             try:
                 conn, addr = s.accept()
                 conn.sendall("Username: ")
-                usr = conn.recv(65000)
+                usr = conn.recv(64)
                 conn.sendall("Password:")
-                pw = conn.recv(65000)
+                pw = conn.recv(64)
+                conn.close()
+                formatStrings(addr[0], usr, pw)
             except socket.error, ex:
                 continue
-            printInfo(addr[0], usr, pw)
-            pwLog(pw)
-            usernameLog(usr)
         except KeyboardInterrupt:
             s.close()
             sys.exit()
-    
-#Compiles and prints
-def printInfo(remote_ip, username, password):
-     ip = remote_ip
-     pw = password
-     usr = username
-     if str(usr) == "" and str(pw) == "":
-         info = (time.strftime("%d/%m/%Y") + " [" + time.strftime("%H:%M:%S") + "]" + " - " + str(ip) + " using no password or username")
-     else:
-         usr = username.rsplit()
-         pw = password.rsplit()
-         try:
-             info = (time.strftime("%d/%m/%Y") + " [" + time.strftime("%H:%M:%S") + "]" + " - " + str(ip) + " using " + str(usr[0]) + "|" + str(pw[0]))
-         except IndexError, ex:
-             info = ""
-             pass
-     print info
-     oFile(info)   
 
-#Creates log output file
-def oFile(pInfo):
-    oInfo = pInfo
-    fileObject = open("logs.txt", "a")
-    fileObject.write(oInfo + "\n")
-    fileObject.close()
+#Chops and cuts string into managable variables
+def formatStrings(ip, usr, pw):
+    ip = ip
+    usr = usr.rsplit()
+    pw = pw.rsplit()
 
-#produces dedicated passwor log
-def pwLog(password):
-    pw = password
-    fileObject = open("pw.txt", "a")
-    fileObject.write(pw + '\n')
-    fileObject.close()
-    
-#produces dedicated username log
-def usernameLog(username):
-    usr = username
-    fileObject = open("usr.txt", "a")
-    fileObject.write(usr + '\n')
-    fileObject.close()
-    
-telCon()
+    if not usr and not pw:
+        pass
+    elif not usr:
+        pass
+    elif not pw:
+        pw = "No password provided."
+        consoleLogger(ip, str(usr[0]), pw)
+    else:
+        consoleLogger(ip, str(usr[0]), str(pw[0]))
+
+#Logs information to console
+def consoleLogger(ip, usr, pw):
+    ip = ip
+    usr = str(usr)
+    pw = str(pw)
+    print(time.strftime("%d/%m/%Y") + " [" + time.strftime("%H:%M:%S") + "]" + " - " + ip + " using " + usr + "|" + pw)
+  
+if __name__ == "__main__":
+    recvConnection()
