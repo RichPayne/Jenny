@@ -11,6 +11,7 @@ s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 s.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
 s.bind(('',23))
 s.listen(10)
+s.settimeout(10)
 
 print "[+]-------Jenny BETA-------[+]"
 
@@ -20,6 +21,7 @@ def recvConnection():
         try:
             try:
                 conn, addr = s.accept()
+                conn.settimeout(10)
                 conn.sendall("Username: ")
                 usr = conn.recv(65000)
                 if not usr:
@@ -66,6 +68,5 @@ def xmlLogger(ip, usr, pw):
     usr = str(usr)
     pw = str(pw)
 
-   
 if __name__ == "__main__":
     recvConnection()
