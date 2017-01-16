@@ -12,7 +12,6 @@ s.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
 s.bind(('',23))
 s.listen(10)
 
-
 print "[+]-------Jenny BETA-------[+]"
 
 #Listens & accepts telnet connections
@@ -22,9 +21,13 @@ def recvConnection():
             try:
                 conn, addr = s.accept()
                 conn.sendall("Username: ")
-                usr = conn.recv(64)
+                usr = conn.recv(65000)
+                if not usr:
+                    conn.close()
                 conn.sendall("Password:")
-                pw = conn.recv(64)
+                pw = conn.recv(65000)
+                if not pw:
+                    conn.close()
                 conn.close()
                 formatStrings(addr[0], usr, pw)
             except socket.error, ex:
@@ -46,8 +49,10 @@ def formatStrings(ip, usr, pw):
     elif not pw:
         pw = "No password provided."
         consoleLogger(ip, str(usr[0]), pw)
+        #xmlLogger(ip, str(usr[0]), pw)
     else:
         consoleLogger(ip, str(usr[0]), str(pw[0]))
+        #xmlLogger(ip, str(usr[0]), str(pw[0]))
 
 #Logs information to console
 def consoleLogger(ip, usr, pw):
@@ -55,6 +60,12 @@ def consoleLogger(ip, usr, pw):
     usr = str(usr)
     pw = str(pw)
     print(time.strftime("%d/%m/%Y") + " [" + time.strftime("%H:%M:%S") + "]" + " - " + ip + " using " + usr + "|" + pw)
-  
+
+def xmlLogger(ip, usr, pw):
+    ip = ip
+    usr = str(usr)
+    pw = str(pw)
+
+   
 if __name__ == "__main__":
     recvConnection()
