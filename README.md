@@ -16,6 +16,7 @@ python jenny.py
 
 * Web interface for live output
 * Mitigate false-positives
+* XML Logs
 
 ## Known issues
 
