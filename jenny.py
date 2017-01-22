@@ -60,9 +60,11 @@ def formatStrings(ip, usr, pw):
         pw = "No password provided."
         consoleLogger(ip, str(usr[0]), pw)
         xmlLogger(ip, str(usr[0]), pw)
+        fileLogger(str(usr[0]), pw)
     else:
         consoleLogger(ip, str(usr[0]), str(pw[0]))
         xmlLogger(ip, str(usr[0]), str(pw[0]))
+        fileLogger(str(usr[0]), str(pw[0]))
 
 #Logs information to console
 def consoleLogger(ip, usr, pw):
@@ -92,6 +94,11 @@ def xmlLogger(ip, usr, pw):
     
     with open("logs.xml", "w") as xml:
         xml.write(xml_str)
+
+def fileLogger(usr, pw):
+    with open("credentials.txt", "a") as f:
+        f.write(usr + " " + pw + "\n")
+    
 
 if __name__ == "__main__":
     recvConnection()
