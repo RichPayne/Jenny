@@ -32,8 +32,6 @@ class simpleHashFunctions:
         print "SHA256: " + m.hexdigest()
         #print ("SHA256: " + m.hexdigest()) #Python 3
         
-
-
     if __name__ == "__main__":
         print "Original string: " + INPUT
         #print ("Original string: " + INPUT) #Python 3
