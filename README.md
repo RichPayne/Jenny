@@ -21,9 +21,8 @@ python c2.py
 
 ## Future features
 
-* Web interface for live output
-* Mitigate false-positives
-* XML Logs
+* Capture attempted commands executed
+* Extract loader server IP 
 
 ## Known issues
 
