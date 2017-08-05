@@ -10,14 +10,11 @@ s.settimeout(10)
 
 def nodeRecv():
     try:
-        try:
-            conn, addr = s.accept()
-            conn.settimeout(10)
-            print conn.recv(65000)
-        except socket.error, ex:
-    except KeyboardInterrupt:
-        s.close()
-        sys.exit()
+        conn, addr = s.accept()
+        conn.settimeout(10)
+        print conn.recv(65000)
+    except socket.error, ex:
+        print ex
     
 
 #Logs information to console
@@ -36,4 +33,3 @@ def fileLogger(usr, pw):
 if __name__ == "__main__":
     print "Listening for nodes..."
     nodeRecv()
-    
