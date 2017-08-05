@@ -8,9 +8,16 @@ A Python based Mirai honeypot built for easy setup & use.
 
 ## Usage
 
+To run the listener 
 ```
-python jenny.py
+python run.py
 ```
+
+To run the c2 
+```
+python c2.py
+```
+
 
 ## Future features
 
