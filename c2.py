@@ -10,7 +10,6 @@ def nodeRecv():
         try:
             try:
                 conn, addr = s.accept()
-                conn.settimeout(1)
                 print conn.recv(65000)
                 conn.close()
             except socket.error, ex:
