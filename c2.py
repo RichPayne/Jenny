@@ -13,7 +13,6 @@ def nodeRecv():
                 conn.settimeout(10)
                 print conn.recv(65000)
                 conn.close()
-                print "1"
             except socket.error, ex:
                 conn.close()
                 print ex
