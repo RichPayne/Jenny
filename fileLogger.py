@@ -1,4 +1,4 @@
-import sys, os
+import sys, os, time
 
 def log(usr, pw):
     with open("credentials.txt", "a") as f:
