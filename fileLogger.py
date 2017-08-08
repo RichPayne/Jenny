@@ -7,11 +7,3 @@ def log(usr, pw):
 def logc2(data):
     with open("log.txt", "a") as f:
         f.write((time.strftime("%d/%m/%Y") + " [" + time.strftime("%H:%M:%S") + "] ") + data + "\n")
-
-
-def logExploit(exploit):
-    with open("exploit.txt", "a") as f:
-        f.write(exploit + "\n")
-
-    
-    

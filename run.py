@@ -33,8 +33,7 @@ def recvConnection():
                 if not pw:
                     conn.close()
                 conn.close()
-                f.format(addr[0], usr, pw, exploit)
-                fl.logExploit(exploit)
+                f.format(addr[0], usr, pw)
             except socket.error, ex:
                 continue
         except KeyboardInterrupt:
