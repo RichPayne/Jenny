@@ -1,6 +1,6 @@
 # Jenny
 
-A Python based Mirai honeypot built for easy setup & use.
+A scalable Python based Mirai honeypot built for easy setup & use.
 
 ## Requirements
 
@@ -33,7 +33,7 @@ Solution: sudo fuser -k 23/tcp
 
 ## Authors
 
-Richard Payne, 2nd year Cyber security student.
+Richard Payne, 3rd year Cyber security student.
 
 ```
 @TheRichPayne
